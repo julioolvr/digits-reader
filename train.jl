@@ -1,5 +1,6 @@
 include("loadData.jl")
 include("printDigit.jl")
+include("cost.jl")
 
 trainingexamples = DataLoading.gettrainingexamples()
 traininglabels = DataLoading.gettraininglabels()
@@ -39,3 +40,6 @@ for digit in 1:10
   println("Label: $(labels[digit])")
   printdigit(images[digit,:], rows, columns)
 end
+
+initial_theta = zeros(size(images, 2))
+println("initial cost for 0 $(cost(initial_theta, images, map(label -> label == 0 ? 1 : 0, labels), 0.1))")
